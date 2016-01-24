@@ -4,7 +4,52 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-<canvas> id="cvMain" width="550" height="550"</canvas>
-<script></script>
+<canvas id="cvMain" width="550" height="550"></canvas>
+<script>
+	//上下左右を表すテーブル
+	var UDLR = [[0,-1],[0,1],[-1,0],[1,0]];
+	var width = 55,height = 55;//迷路の大きさ
+	var maze = makeMaze();
+	drawMaze(maze);
+	//迷路を生成する
+	function makeMaze() {
+		var maze = [];
+		//外周に壁を作る
+		for (var y = 0; y < height; y++) {
+			maze[y] = [];
+		for (var x = 0; x < width; x++) {
+			var w = (x == 0 || x == width-1 || y == 0 || y == height-1);
+			maze[y][x] = w ? 1 : 0;
+		}
+	}
+	//飛び飛びの壁とランダムの壁を作る
+	for (var y = 2; y < height-2; y+=2){
+		for (var x = 0; x < width-2; x+=2){
+			var r = UDLR[rnd(4)];
+			var x2 = x + r[1],y2 = y + r[0];
+			maze[y][x] = 1;
+			maze[y2][x2] = 1;
+		}
+	}
+	return maze;
+  }
+  //迷路を描画する
+  function drawMaze(maze) {
+  	var cvMain = document.getElementById("cvMain");
+  	var ctx = cvMain.getContext("2d");
+  	ctx.fillStyle = "black";
+  	var bw = cvMain.width / 55;
+  	for (var y = 0; y < maze.length; y++) {
+  		for (var x = 0; x < maze[0].length; x++) {
+  			if (maze[y][x]) {
+  				ctx.fillRect(x*bw,y*bw,bw,bw);
+  			}
+  		}
+  	}
+  }
+  function rnd(n) {
+  	return Math.floor(Math.random()*n);
+  }
+</script>
 </body>
 </html>

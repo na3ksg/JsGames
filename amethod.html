@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-<canvas id="cvMain" width="550" height="550"></canvas>
-<script type="text/javascript">
+	<canvas id="cvMain" width="550" height="550"></canvas>
+	<script type="text/javascript">
 	var width = 55, height = 55;//迷路の大きさ
 	var maze = [];
 	//最初に全てを壁にする
@@ -13,7 +13,7 @@
 		maze[y] = [];
 		for (var x = 0; x < width; x++)
 			maze[y][x] = 1;
-		}
+	}
 		//穴掘りの開始点を決める
 		var dx = rnd((width-2) / 2) * 2 + 1;
 		var dy = rnd((height-2) / 2) * 2 + 1;
@@ -68,6 +68,6 @@
 				}
 			}
 		}
-</script>
+	</script>
 </body>
 </html>

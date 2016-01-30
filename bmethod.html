@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-<canvas id="cvMain" width="550" height="550"></canvas>
-<script>
+	<canvas id="cvMain" width="550" height="550"></canvas>
+	<script>
 	//上下左右を表すテーブル
 	var UDLR = [[0,-1],[0,1],[-1,0],[1,0]];
 	var width = 55,height = 55;//迷路の大きさ
@@ -17,11 +17,11 @@
 		//外周に壁を作る
 		for (var y = 0; y < height; y++) {
 			maze[y] = [];
-		for (var x = 0; x < width; x++) {
-			var w = (x == 0 || x == width-1 || y == 0 || y == height-1);
-			maze[y][x] = w ? 1 : 0;
+			for (var x = 0; x < width; x++) {
+				var w = (x == 0 || x == width-1 || y == 0 || y == height-1);
+				maze[y][x] = w ? 1 : 0;
+			}
 		}
-	}
 	//飛び飛びの壁とランダムの壁を作る
 	for (var y = 2; y < height-2; y+=2){
 		for (var x = 0; x < width-2; x+=2){
@@ -32,7 +32,7 @@
 		}
 	}
 	return maze;
-  }
+}
   //迷路を描画する
   function drawMaze(maze) {
   	var cvMain = document.getElementById("cvMain");

@@ -9,12 +9,12 @@ var UDLR = [[0,-1],[0,1],[-1,0],[1,0]];//ゲーム全体で使う変数
 var context,image;//描画用
 var blocks = [];//各ブロックを管理する配列変数
 var isLock;//マウス操作をロックするかどうか
- 
+
 //初期操作
 function init(){
     //画像コンテキストの取得
     var canvas =
-        document.getElementById('gameCanvas');
+    document.getElementById('gameCanvas');
     if(!canvas.getContext){
         alert("Canvasをサポートしてないよ");return;
     }   
@@ -26,24 +26,24 @@ function init(){
     image.src = PICTURE_URL;
     image.onload = initGame;//読み込んだらゲームの初期化
 };
- 
+
 //ゲームの初期化
 function initGame(){
     isLock = true;//ユーザー操作をロックする
- 
+    
     //パズルのブロックを作成する
     for(var i = 0; i < NUM_BLOCKS; i++){
         blocks[i] = i;
     }
- 
+    
     //末尾（右下）を空きブロックとする
     blocks[NUM_BLOCKS -1] = -1;
     drawPuzzle();//見本を表示する
- 
+    
     //1秒後にシャッフルを開始する
     setTimeout(shufflePuzzle,1000);
 }
- 
+
 //パズルの各ピースをシャッフルする
 function shufflePuzzle(){
     var scount = 20;//シャッフルする回数を指定

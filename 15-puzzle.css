@@ -1,15 +1,15 @@
 /*マージンと余白を0にする*/
 *{
-    padding: 0;
-    margin: 0;
-    text-align: center;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 }
 /*タイトル表示用*/
 h1{
-    background-color: blue;
-    color: white;
-    font-size: 20px;
-    padding: 4px;
+	background-color: blue;
+	color: white;
+	font-size: 20px;
+	padding: 4px;
 }
 body{
 	background-color: #d3d3d3

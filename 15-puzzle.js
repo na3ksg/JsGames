@@ -16,7 +16,7 @@ function init(){
     var canvas =
     document.getElementById('gameCanvas');
     if(!canvas.getContext){
-        alert("Canvasをサポートしてないよ");return;
+    	alert("Canvasをサポートしてないよ");return;
     }   
     context = canvas.getContext("2d");
     //マウスイベントの設定
@@ -33,7 +33,7 @@ function initGame(){
     
     //パズルのブロックを作成する
     for(var i = 0; i < NUM_BLOCKS; i++){
-        blocks[i] = i;
+    	blocks[i] = i;
     }
     
     //末尾（右下）を空きブロックとする
@@ -50,20 +50,20 @@ function shufflePuzzle(){
     var blank = NUM_BLOCKS-1;//空きブロック位置
     //一回のみシャッフルを行う関数
     var shuffle = function(){
-        scount--;
-        if (scount <= 0) {
+    	scount--;
+    	if (scount <= 0) {
             isLock = false;//ゲーム開始
             return;
         }
         var r,px,py,no;
         while(1){
-            r = Math.floor(Math.random() * UDLR.length);
-            px = getCol(blank) + UDLR[r][0];
-            py = getRow(blank) + UDLR[r][1];
-            if (px < 0||px >= COL_COUNT)continue;
-            if (py < 0||py >= ROW_COUNT)continue;
-            no = getIndex(px,py);
-            break;
+        	r = Math.floor(Math.random() * UDLR.length);
+        	px = getCol(blank) + UDLR[r][0];
+        	py = getRow(blank) + UDLR[r][1];
+        	if (px < 0||px >= COL_COUNT)continue;
+        	if (py < 0||py >= ROW_COUNT)continue;
+        	no = getIndex(px,py);
+        	break;
         }
         blocks[blank] = blocks[no];
         blocks[no] = -1;
@@ -75,22 +75,22 @@ function shufflePuzzle(){
 }
 //パズルの画面を描画する
 function drawPuzzle(){
-    for(var i = 0; i < NUM_BLOCKS; i++){
+	for(var i = 0; i < NUM_BLOCKS; i++){
         //描画先座標を計算
         var dx = (i % COL_COUNT) * BLOCK_W;
         var dy = Math.floor(i / COL_COUNT) * BLOCK_H;
         //描画元座標を計算
         var no = blocks[i];
         if(no < 0){//空きブロック
-            context.fillStyle = "#0000FF";
-            context.fillRect(dx,dy,BLOCK_W,BLOCK_H);
+        	context.fillStyle = "#0000FF";
+        	context.fillRect(dx,dy,BLOCK_W,BLOCK_H);
         }else{
-            var sx =(no % COL_COUNT) * BLOCK_W;
-            var sy = Math.floor(no / COL_COUNT) * BLOCK_H;
+        	var sx =(no % COL_COUNT) * BLOCK_W;
+        	var sy = Math.floor(no / COL_COUNT) * BLOCK_H;
             //画像の一部をきりっとって描画
             context.drawImag(image,
-                sx,sy,BLOCK_W,BLOCK_H,
-                dx,dy,BLOCK_W,BLOCK_H);
+            	sx,sy,BLOCK_W,BLOCK_H,
+            	dx,dy,BLOCK_W,BLOCK_H);
         }
 
         //画像の枠を描画
@@ -111,13 +111,13 @@ function drawPuzzle(){
 
 //マウスで移動先をクリックした時の処理
 function mouseHandler(t){
-    if (isLock)return;
+	if (isLock)return;
     //タッチ座標の取得
     var px = t.offsetX,py = t.offsetY;
     if(px == undefined){//Firefox対策
-        var p = t.currentTarget;
-        px = t.layerX - p.offsetLeft;
-        py = t.layerY - p.offsetTop;
+    	var p = t.currentTarget;
+    	px = t.layerX - p.offsetLeft;
+    	py = t.layerY - p.offsetTop;
     }
     //何番目のピースを動かしたいのか計算する
     var px2 = Math.floor(px / BLOCK_W);
@@ -127,38 +127,38 @@ function mouseHandler(t){
     if(blocks[no] == -1)return;
     //上下左右に動かせるブロックがあるか確認
     for(var i = 0; i < UDLR.length; i++){
-        var pt = UDLR[i];
-        var xx = px2 + pt[0];
-        var yy = py2 + pt[1];
-        var no = getIndex(xx,yy);
-        if(xx < 0||xx >= COL_COUNT)continue;
-        if(yy < 0||yy >= ROW_COUNT)continue;
+    	var pt = UDLR[i];
+    	var xx = px2 + pt[0];
+    	var yy = py2 + pt[1];
+    	var no = getIndex(xx,yy);
+    	if(xx < 0||xx >= COL_COUNT)continue;
+    	if(yy < 0||yy >= ROW_COUNT)continue;
         if(blocks[no] == -1){//移動可能か
-            blocks[no] = blocks[getIndex(px2,py2)];
-            blocks[getIndex(px2,py2)] = -1;
-            drawPuzzle();
-            checkClear();
-            break;
+        	blocks[no] = blocks[getIndex(px2,py2)];
+        	blocks[getIndex(px2,py2)] = -1;
+        	drawPuzzle();
+        	checkClear();
+        	break;
         }
     }
 }
 
 //クリアしたかどうかチェックする
 function checkClear(){
-    var flag = true;
-    for(var i = 0; i < (NUM_BLOCKS -1); i++){
-        if(blocks[i] ! = i){flag = false; break;}
-    }
-    if(flag){
-        alert("ゲームクリア！");
+	var flag = true;
+	for(var i = 0; i < (NUM_BLOCKS -1); i++){
+		if(blocks[i] ! = i){flag = false; break;}
+	}
+	if(flag){
+		alert("ゲームクリア！");
         initGame();//再度ゲームを実行
     }
 }
 //列と行からブロック番号を調べる関数
 function getIndex(col,row){
-    return row * COL_COUNT + col;
+	return row * COL_COUNT + col;
 }
 function getCol(no){return no % COL_COUNT;}
 function getRow(no){
-    return Math.floor(no / COL_COUNT);
+	return Math.floor(no / COL_COUNT);
 }

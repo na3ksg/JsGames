@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    background-color: #DCDCDC;
+}
+
+input.btn {
+    padding: 15px 40px;
+    font-size: 1rem;
+    color: #fff;
+    border-style: none;
+    background-color: #911; 
+}
+
+input.btn.stop {
+    background-color: #191;
+}
+
+p.rankin {
+    color: #f55;
+    font-size: 1.4rem;
+}

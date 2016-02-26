@@ -1,9 +1,9 @@
 var targetTime = 10; // 目標時間
-var time  = 0;       // 経過時間
+var time = 0;       // 経過時間
 var timer = null     // タイマー
 
 var toggle = document.getElementById('toggle');
-toggle.addEventListener('click', function(event) {
+toggle.addEventListener('click', function (event) {
     // トグルボタンの状態判定
     status = toggle.value;
     if (status === 'start') {
@@ -19,7 +19,7 @@ toggle.addEventListener('click', function(event) {
 function timerStart() {
     // 経過時間を更新する
     var startTime = new Date().getTime();
-    timer = setInterval(function() {
+    timer = setInterval(function () {
         time = (new Date().getTime() - startTime) / 1000;
         // document.getElementById('timer').textContent = time.toFixed(3);
     }, 10);

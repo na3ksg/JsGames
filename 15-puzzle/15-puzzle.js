@@ -1,7 +1,7 @@
 //各種設定
-var PICTURE_URL ="hoge";//画像ファイルのURL
-var BLOCK_W = 150;//ブロックの幅
-var BLOCK_H = 150;//ブロックの高さ
+var PICTURE_URL ="15puzzle.png";//画像ファイルのURL
+var BLOCK_W = 70;//ブロックの幅
+var BLOCK_H = 70;//ブロックの高さ
 var ROW_COUNT = 4;//列を何枚に切るか
 var COL_COUNT = 4;//行を何枚に切るか
 var NUM_BLOCKS = ROW_COUNT * COL_COUNT;//上下左右の相対座標を定義したもの

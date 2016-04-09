@@ -1,5 +1,5 @@
 //各種設定
-var PICTURE_URL ="15puzzle.png";//画像ファイルのURL
+var PICTURE_URL = "muscle.jpg";//画像ファイルのURL
 var BLOCK_W = 70;//ブロックの幅
 var BLOCK_H = 70;//ブロックの高さ
 var ROW_COUNT = 4;//列を何枚に切るか

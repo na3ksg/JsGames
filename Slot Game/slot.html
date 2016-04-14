@@ -131,7 +131,7 @@
             });
             
             function stopSlot(n, panel, btn) {
-                if(!isPlaying || return[n] !== undefined) return;
+                if(!isPlaying || results[n] !== undefined) return;
                 btn.className = 'btn inactive';
                 clearTimeout(timers[n]);
                 results[n] = panel.innerHTML;
